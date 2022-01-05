@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Navbar from "../../Shared/Navbar/Navbar";
 
 const Home = () => {
   //Dynamic Title
@@ -7,9 +8,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <>
+      <Navbar />
       <h1>This is home page</h1>
-    </div>
+    </>
   );
 };
 

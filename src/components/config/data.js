@@ -69,8 +69,7 @@ export const blogList = [
     authorName: 'Sohel Rana',
     authorAvatar: '/assets/images/blogImages/a2.png',
     createdAt: 'January 19, 2021',
-    cover:
-      '/assets/images/blogImages/b-i-6.png',
+    cover: '/assets/images/blogImages/b-i-6.png',
   },
   {
     id: 7,

@@ -29,7 +29,7 @@ const Navbar = () => {
                     HOME
                   </NavLink>
                   <NavLink
-                    to="/doctor"
+                    to="/doctors"
                     className={(navLink) =>
                       navLink.isActive
                         ? "btn btn-nav-active"
@@ -49,7 +49,7 @@ const Navbar = () => {
                     APPOINTMENTS
                   </NavLink>
                   <NavLink
-                    to="/blog"
+                    to="/blogs"
                     className={(navLink) =>
                       navLink.isActive
                         ? "btn btn-nav-active"
@@ -68,7 +68,6 @@ const Navbar = () => {
                   >
                     CONTACT
                   </NavLink>
-<<<<<<< HEAD
                   <NavLink
                     to="/about"
                     className={(navLink) =>
@@ -79,13 +78,6 @@ const Navbar = () => {
                   >
                     ABOUT
                   </NavLink>
-                  <Link
-                    to="/"
-                    className="btn btn-nav-active btn-nav-toggler-active"
-                  >
-                    LOGOUT
-                  </Link>
-=======
                   {user && <span>{user.displayName}</span>}
                   {user ? (
                     <button
@@ -102,7 +94,6 @@ const Navbar = () => {
                       LOGIN
                     </Link>
                   )}
->>>>>>> 81faef4b8f47eff9c4d845b32667b71a8d92403b
                 </div>
               </div>
             </div>
@@ -196,7 +187,7 @@ const Navbar = () => {
                 APPOINTMENTS
               </NavLink>
               <NavLink
-                to="/blog"
+                to="/blogs"
                 className={(navLink) =>
                   navLink.isActive
                     ? "btn btn-nav-toggler-active"

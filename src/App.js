@@ -14,6 +14,10 @@ import Payments from "./components/Dashboard/Payments/Payments";
 import MyCarts from "./components/Dashboard/MyCarts/MyCarts";
 import Doctors from "./components/Pages/Doctors/Doctors";
 import ShowBlog from "./components/ShowBlogs/showblog";
+import Appointment from "./components/Pages/Appointment/Appointment";
+import About from "./components/Pages/About/About";
+import AddDoctor from "./components/Dashboard/AddDoctor/AddDoctor";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -27,13 +31,24 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/blogs" element={<ShowBlog />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/appoinments" element={<Appointment />} />
           {/* dashboard route  */}
-          <Route path="/dashboard/*" element={<Dashboard />}>
+
+          <Route
+            path="/dashboard/*"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          >
             <Route path="makeadmin" element={<MakeAdmin />} />
-            <Route path="addservices" element={<AddServices />} />
+            <Route path="adservices" element={<AddServices />} />
             <Route path="manageappoinment" element={<ManageAppoinment />} />
             <Route path="payments" element={<Payments />} />
             <Route path="mycarts" element={<MyCarts />} />
+            <Route path="adddoctor" element={<AddDoctor />} />
           </Route>
           {/* dashboard route ends  */}
           <Route path="*" element={<NotFound />} />

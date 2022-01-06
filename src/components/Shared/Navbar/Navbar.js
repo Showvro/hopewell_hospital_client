@@ -39,7 +39,7 @@ const Navbar = () => {
                     DOCTORS
                   </NavLink>
                   <NavLink
-                    to="/appointment"
+                    to="/appoinments"
                     className={(navLink) =>
                       navLink.isActive
                         ? "btn btn-nav-active"
@@ -167,7 +167,7 @@ const Navbar = () => {
                 HOME
               </NavLink>
               <NavLink
-                to="/doctor"
+                to="/doctors"
                 className={(navLink) =>
                   navLink.isActive
                     ? "btn btn-nav-toggler-active"
@@ -177,7 +177,7 @@ const Navbar = () => {
                 DOCTORS
               </NavLink>
               <NavLink
-                to="/appointment"
+                to="/appoinments"
                 className={(navLink) =>
                   navLink.isActive
                     ? "btn btn-nav-toggler-active"

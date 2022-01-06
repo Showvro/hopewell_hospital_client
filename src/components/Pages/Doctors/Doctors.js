@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { fetchBlogsData, fetchDoctorData } from "../../../Redux/Slicer/Fetch";
+import { fetchDoctorData } from "../../../Redux/Slicer/Fetch";
 import Navbar from "../../Shared/Navbar/Navbar";
 import Doctor from "../Doctor/Doctor";
 import "./Doctors.css";
 
 function Doctors() {
   const dispatch = useDispatch();
-  const {DoctorData} = useSelector(state => state.HopeWellData)
+  const { DoctorData, dataLoading } = useSelector(
+    (state) => state.HopeWellData
+  );
   useEffect(() => {
     dispatch(fetchDoctorData());
   }, [dispatch]);
   return (
     <>
       <Navbar />
-      <div className="doctor">
-        <div>
-          <h1>Our Doctors</h1>
-          <div className="map">
-            {DoctorData.map((ourDoctor) => (
-              <Doctor doctor={ourDoctor} key={ourDoctor._id}></Doctor>
-            ))}
+      {dataLoading ? (
+        <div class=" flex justify-center items-center my-24">
+          <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
+        </div>
+      ) : (
+        <div className="doctor">
+          <div>
+            <h1>Our Doctors</h1>
+            <div className="map">
+              {DoctorData.map((ourDoctor) => (
+                <Doctor doctor={ourDoctor} key={ourDoctor._id}></Doctor>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

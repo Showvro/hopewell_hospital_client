@@ -11,7 +11,6 @@ const BlogList = ({ blogs }) => {
         </h1>
         <div className="flex mt-2 items-center justify-center text-center">
           <div className="w-16 h-1 rounded-full bg-gray-800 inline-flex justify-center"></div>
-         
         </div>
       </div>
       {/* blogs showing  */}

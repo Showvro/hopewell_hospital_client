@@ -16,19 +16,20 @@ export const fetchDoctorData = createAsyncThunk(
 );
 
 export const fetchApData = createAsyncThunk(
-  "data/doctorsdata",
+  "data/appoinmentdata",
   async (token) => {
     const options = {
-      url: "http://localhost:5000/makeadmin",
-      method: "POST",
+      url: "http://localhost:5000/getap",
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
         authorization: `Bearer ${token}`,
       },
     };
-    axios(options).then((response) => {
+    const data = axios(options).then((response) => {
       return response.data;
     });
+    return data;
   }
 );

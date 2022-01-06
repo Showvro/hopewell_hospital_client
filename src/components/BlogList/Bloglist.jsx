@@ -16,7 +16,7 @@ const BlogList = ({ blogs }) => {
       {/* blogs showing  */}
       <div className="blogList-wrap max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {blogs.map((blog) => (
-          <BlogItem blog={blog} />
+          <BlogItem blog={blog} key={blog._id}/>
         ))}
       </div>
     </>

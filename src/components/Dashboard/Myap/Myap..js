@@ -11,9 +11,9 @@ const Myap = () => {
   );
   const { token } = useAuth();
   useEffect(() => {
+      console.log(token)
     dispath(fetchApData(token));
   }, [token, dispath]);
-  console.log(AppoinmentData);
   return (
     <div>
       <h1>This is My Appoinments</h1>

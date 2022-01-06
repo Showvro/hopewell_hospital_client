@@ -11,7 +11,7 @@ const MakeAdmin = () => {
   const { token } = useAuth();
   const onSubmit = (data) => {
     const options = {
-      url: "http://localhost:5000/makeadmin",
+      url: "https://fathomless-inlet-67666.herokuapp.com/makeadmin",
       method: "POST",
       headers: {
         Accept: "application/json",

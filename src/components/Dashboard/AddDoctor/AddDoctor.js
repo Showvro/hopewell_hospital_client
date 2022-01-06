@@ -17,11 +17,13 @@ const AddDoctor = () => {
       title: "Endocrinology",
       email: data.email,
     };
-    axios.post("http://localhost:5000/addoctor", newDoctor).then((response) => {
-      if (response.data.acknowledged) {
-        navigate("/doctors");
-      }
-    });
+    axios
+      .post("https://fathomless-inlet-67666.herokuapp.com/addoctor", newDoctor)
+      .then((response) => {
+        if (response.data.acknowledged) {
+          navigate("/doctors");
+        }
+      });
   };
 
   return (

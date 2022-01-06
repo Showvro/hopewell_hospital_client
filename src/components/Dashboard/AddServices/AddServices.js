@@ -21,11 +21,13 @@ const AddServices = () => {
       category: "Health",
       id: Math.ceil(Math.random() * 1000),
     };
-    axios.post("http://localhost:5000/addblog", newblog).then((response) => {
-      if(response.data.acknowledged){
-        navigate("/blogs")
-      }
-    });
+    axios
+      .post("https://fathomless-inlet-67666.herokuapp.com/addblog", newblog)
+      .then((response) => {
+        if (response.data.acknowledged) {
+          navigate("/blogs");
+        }
+      });
   };
   return (
     <div className="bg-cyan-50">

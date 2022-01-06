@@ -22,20 +22,22 @@ const Appointment = () => {
       state:"pending",
     };
     console.log(newAp);
-    axios.post("http://localhost:5000/saveap", newAp).then((result) => {
-      if (result.data.acknowledged) {
-        Swal.fire({
-          title: "Appoointment Successfull Placed",
-          showClass: {
-            popup: "animate__animated animate__fadeInDown",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutUp",
-          },
-        });
-        reset();
-      }
-    });
+    axios
+      .post("https://fathomless-inlet-67666.herokuapp.com/saveap", newAp)
+      .then((result) => {
+        if (result.data.acknowledged) {
+          Swal.fire({
+            title: "Appoointment Successfull Placed",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+          reset();
+        }
+      });
   };
 
   return (

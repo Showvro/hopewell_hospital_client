@@ -10,12 +10,13 @@ const ShowBlog = () => {
 
   return (
     <>
-    <Navbar/>
-      <div className="my-12">
+      <Navbar />
+     
+      <div>
         {/* Blog List & Empty View */}
         {!blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

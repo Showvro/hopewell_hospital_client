@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchBlogsData, fetchDoctorData } from "./Fetch";
 
 const initialState = {
   BlogsData: [],
   DoctorData: [],
   AppoinmentData: [],
+  dataLoading: false,
 };
 
 export const HopeWellSlice = createSlice({
@@ -17,6 +19,24 @@ export const HopeWellSlice = createSlice({
       // immutable state based off those changes
       state.value += 1;
     },
+  },
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(fetchBlogsData.pending, (state, action) => {
+      state.dataLoading = true;
+    });
+    builder.addCase(fetchBlogsData.fulfilled, (state, action) => {
+      state.dataLoading = false;
+      state.BlogsData = action.payload;
+    });
+    builder.addCase(fetchDoctorData.pending, (state, action) => {
+      state.dataLoading = true;
+    });
+    builder.addCase(fetchDoctorData.fulfilled, (state, action) => {
+      state.dataLoading = false;
+      console.log(action.payload);
+      state.DoctorData = action.payload;
+    });
   },
 });
 

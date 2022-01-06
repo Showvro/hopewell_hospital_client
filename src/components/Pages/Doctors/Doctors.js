@@ -1,46 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchBlogsData, fetchDoctorData } from "../../../Redux/Slicer/Fetch";
 import Navbar from "../../Shared/Navbar/Navbar";
 import Doctor from "../Doctor/Doctor";
-import OurDoctor from "../OurDoctor/OurDoctor";
-import './Doctors.css';
+import "./Doctors.css";
 
 function Doctors() {
-    const [doctors, setDoctors] = useState([]);
-    useEffect( ()=> {
-        fetch("data.json")
-        .then(res => res.json())
-        .then((data) => setDoctors(data))
-    }, [])
-    const [ourDoctors, setOurDoctors] = useState([]);
-    useEffect( ()=> {
-        fetch("doctor.json")
-        .then(res => res.json())
-        .then((data) => setOurDoctors(data))
-    }, [])
-   
-    return (
-      <>
-      <Navbar/>
+  const dispatch = useDispatch();
+  const {DoctorData} = useSelector(state => state.HopeWellData)
+  useEffect(() => {
+    dispatch(fetchDoctorData());
+  }, [dispatch]);
+  return (
+    <>
+      <Navbar />
       <div className="doctor">
-            <div>
-            <h1>Our Chief Doctors</h1>
+        <div>
+          <h1>Our Doctors</h1>
           <div className="map">
-          {
-               doctors.map(doctor => <Doctor doctor={doctor}></Doctor>)
-           }
+            {DoctorData.map((ourDoctor) => (
+              <Doctor doctor={ourDoctor} key={ourDoctor._id}></Doctor>
+            ))}
           </div>
-           <h1>Our Doctors</h1>
-           <div className="map">
-          {
-               ourDoctors.map(ourDoctor => <OurDoctor ourDoctor={ourDoctor}></OurDoctor>)
-           }
-          </div>
-          <h1>Physicians List</h1>
-          {/* Table */}
         </div>
       </div>
-      </>
-    );
+    </>
+  );
 }
 
 export default Doctors;

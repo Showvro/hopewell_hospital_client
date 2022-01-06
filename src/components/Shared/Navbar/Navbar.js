@@ -78,6 +78,14 @@ const Navbar = () => {
                   >
                     ABOUT
                   </NavLink>
+                  {user && (
+                    <Link
+                      to="/dashboard"
+                      className="btn btn-nav-active btn-nav-toggler-active"
+                    >
+                      Dashboard
+                    </Link>
+                  )}
                   {user && <span>{user.displayName}</span>}
                   {user ? (
                     <button
@@ -216,12 +224,29 @@ const Navbar = () => {
               >
                 ABOUT
               </NavLink>
-              <Link
-                to="/"
-                className="btn btn-nav-active btn-nav-toggler-active"
-              >
-                LOGOUT
-              </Link>
+              {user && (
+                <Link
+                  to="/dashboard"
+                  className="btn btn-nav-active btn-nav-toggler-active"
+                >
+                  Dashboard
+                </Link>
+              )}
+              {user ? (
+                <button
+                  onClick={LogOut}
+                  className="btn btn-nav-active btn-nav-toggler-active"
+                >
+                  LogOut
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="btn btn-nav-active btn-nav-toggler-active"
+                >
+                  LOGIN
+                </Link>
+              )}
             </div>
           </div>
         </Transition>

@@ -3,11 +3,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 
 const MakeAdmin = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit ,reset} = useForm();
   const { token } = useAuth();
   const onSubmit = (data) => {
     const options = {
@@ -23,7 +24,18 @@ const MakeAdmin = () => {
       },
     };
     axios(options).then((response) => {
-      console.log(response.data);
+      if (response.data.acknowledged) {
+        Swal.fire({
+          title: "Successfully You've make a Admin",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        reset();
+      }
     });
   };
 

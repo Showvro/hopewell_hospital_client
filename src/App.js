@@ -18,6 +18,7 @@ import Appointment from "./components/Pages/Appointment/Appointment";
 import About from "./components/Pages/About/About";
 import AddDoctor from "./components/Dashboard/AddDoctor/AddDoctor";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Myap from "./components/Dashboard/Myap/Myap.";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
             <Route path="payments" element={<Payments />} />
             <Route path="mycarts" element={<MyCarts />} />
             <Route path="adddoctor" element={<AddDoctor />} />
+            <Route path="myap" element={<Myap />} />
           </Route>
           {/* dashboard route ends  */}
           <Route path="*" element={<NotFound />} />

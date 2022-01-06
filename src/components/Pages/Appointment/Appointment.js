@@ -5,10 +5,38 @@ import { MdOutlineWifiCalling3, MdOutlineEmail } from "react-icons/md";
 import { BsGlobe2 } from "react-icons/bs";
 import Footer from "../../Shared/Footer/Footer";
 import "react-datepicker/dist/react-datepicker.css";
+import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Appointment = () => {
-  //
+  const { register, handleSubmit ,reset} = useForm();
   const [startDate, setStartDate] = useState(new Date());
+  const { user } = useAuth();
+  const onSubmit = (data) => {
+    const newAp = {
+      ...data,
+      email: user.email,
+      date: new Date(startDate).toLocaleDateString(),
+      state:"pending",
+    };
+    console.log(newAp);
+    axios.post("http://localhost:5000/saveap", newAp).then((result) => {
+      if (result.data.acknowledged) {
+        Swal.fire({
+          title: "Appoointment Successfull Placed",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        reset();
+      }
+    });
+  };
 
   return (
     <>
@@ -16,7 +44,11 @@ const Appointment = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="lg:flex">
           <div className="xl:w-3/5 lg:w-3/5 h-full pt-5 pb-5 xl:pr-5 xl:pl-0">
-            <form id="contact" className="bg-white py-4 px-8">
+            <form
+              id="contact"
+              className="bg-white py-4 px-8 "
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <h1 className="text-4xl text-gray-800 font-semibold mb-6">
                 Enter Your Details
               </h1>
@@ -36,6 +68,7 @@ const Appointment = () => {
                       type="text"
                       className="focus:outline-none focus:border focus:border-cyan-500 font-normal w-72 h-10 flex items-center pl-3 text-sm border-gray-300 border"
                       placeholder="Full Name"
+                      {...register("fullname")}
                     />
                   </div>
                 </div>
@@ -54,6 +87,7 @@ const Appointment = () => {
                       type="email"
                       className="focus:outline-none focus:border focus:border-cyan-500 font-normal w-72 h-10 flex items-center pl-3 text-sm border-gray-300 border"
                       placeholder="Your Email"
+                      defaultValue={user.email}
                     />
                   </div>
                 </div>
@@ -74,6 +108,7 @@ const Appointment = () => {
                       type="tel"
                       className="focus:outline-none focus:border focus:border-cyan-500 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 border"
                       placeholder="Subject"
+                      {...register("subject")}
                     />
                   </div>
                 </div>
@@ -88,9 +123,9 @@ const Appointment = () => {
                 <select
                   id="country"
                   required
-                  name="country"
                   autoComplete="country-name"
                   className="mt-1 block w-full py-2 mb-4 border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-cyan-500 sm:text-sm"
+                  {...register("department")}
                 >
                   <option>Gynaecology</option>
                   <option>Blood Bank</option>
@@ -100,8 +135,8 @@ const Appointment = () => {
                 </select>
               </div>
 
-              <div class="relative">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+              <div className="relative my-12">
+                <div className="flex absolute inset-y-0 left-0 items-center pl-3">
                   <DatePicker
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
@@ -125,6 +160,7 @@ const Appointment = () => {
                     rows={8}
                     id="message"
                     defaultValue={"I need an appointment in an emergency."}
+                    {...register("message")}
                   />
                 </div>
                 <button

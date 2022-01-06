@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchBlogsData, fetchDoctorData } from "./Fetch";
+import { fetchApData, fetchBlogsData, fetchDoctorData } from "./Fetch";
 
 const initialState = {
   BlogsData: [],
@@ -34,8 +34,14 @@ export const HopeWellSlice = createSlice({
     });
     builder.addCase(fetchDoctorData.fulfilled, (state, action) => {
       state.dataLoading = false;
-      console.log(action.payload);
       state.DoctorData = action.payload;
+    });
+    builder.addCase(fetchApData.pending, (state, action) => {
+      state.dataLoading = true;
+    });
+    builder.addCase(fetchApData.fulfilled, (state, action) => {
+      state.dataLoading = false;
+      state.AppoinmentData = action.payload;
     });
   },
 });

@@ -98,6 +98,19 @@ export default function Sidebar() {
                 </li>
                 <li className="rounded-lg mb-2">
                   <NavLink
+                    to="/dashboard/myap"
+                    className={({ isActive }) =>
+                      !isActive
+                        ? "flex items-center gap-4 text-md text-gray-700 font-light px-4 py-3 rounded-lg"
+                        : "flex items-center gap-4 text-md text-blue-400 font-light px-4 py-3 rounded-lg"
+                    }
+                  >
+                    <MdPayment />
+                    My Appoinments
+                  </NavLink>
+                </li>
+                <li className="rounded-lg mb-2">
+                  <NavLink
                     to="/dashboard/payments"
                     className={({ isActive }) =>
                       !isActive

@@ -14,3 +14,21 @@ export const fetchDoctorData = createAsyncThunk(
     return await response.data;
   }
 );
+
+export const fetchApData = createAsyncThunk(
+  "data/doctorsdata",
+  async (token) => {
+    const options = {
+      url: "http://localhost:5000/makeadmin",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+        authorization: `Bearer ${token}`,
+      },
+    };
+    axios(options).then((response) => {
+      return response.data;
+    });
+  }
+);

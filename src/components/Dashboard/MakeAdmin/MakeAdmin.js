@@ -4,39 +4,30 @@ import { useForm } from "react-hook-form";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../../hooks/useAuth";
 
 const MakeAdmin = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit ,reset} = useForm();
-  const { token } = useAuth();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    const options = {
-      url: "https://fathomless-inlet-67666.herokuapp.com/makeadmin",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-        authorization: `Bearer ${token}`,
-      },
-      body: {
+    console.log(data);
+    axios
+      .post("https://fathomless-inlet-67666.herokuapp.com/makeadmin", {
         email: data.email,
-      },
-    };
-    axios(options).then((response) => {
-      if (response.data.acknowledged) {
-        Swal.fire({
-          title: "Successfully You've make a Admin",
-          showClass: {
-            popup: "animate__animated animate__fadeInDown",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutUp",
-          },
-        });
-        reset();
-      }
-    });
+      })
+      .then((response) => {
+        if (response.data.acknowledged) {
+          Swal.fire({
+            title: "Successfully You've make a Admin",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+          reset();
+        }
+      });
   };
 
   return (

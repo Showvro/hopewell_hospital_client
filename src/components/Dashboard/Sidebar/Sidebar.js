@@ -5,6 +5,7 @@ import {
   MdPayment,
   MdShoppingCart,
   MdOutlineAdminPanelSettings,
+  MdHomeFilled,
 } from "react-icons/md";
 
 import AdminNavbar from "./AdminNavbar";
@@ -28,6 +29,19 @@ export default function Sidebar() {
             {admin ? (
               <ul className="flex-col min-w-full flex list-none">
                 {" "}
+                <li>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      !isActive
+                        ? "flex items-center gap-4 text-md text-gray-700 font-light px-4 py-3 rounded-lg"
+                        : "flex items-center gap-4 text-md text-blue-400 font-light px-4 py-3 rounded-lg"
+                    }
+                  >
+                    <MdHomeFilled />
+                    Home
+                  </NavLink>
+                </li>
                 <li className="rounded-lg mb-2 ">
                   <NavLink
                     to="/dashboard/mycarts"
@@ -83,6 +97,19 @@ export default function Sidebar() {
               </ul>
             ) : (
               <ul className="flex-col min-w-full flex list-none">
+                <li>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      !isActive
+                        ? "flex items-center gap-4 text-md text-gray-700 font-light px-4 py-3 rounded-lg"
+                        : "flex items-center gap-4 text-md text-blue-400 font-light px-4 py-3 rounded-lg"
+                    }
+                  >
+                    <MdHomeFilled />
+                    Home
+                  </NavLink>
+                </li>
                 <li className="rounded-lg mb-4">
                   <NavLink
                     to="/dashboard"
@@ -105,7 +132,7 @@ export default function Sidebar() {
                         : "flex items-center gap-4 text-md text-blue-400 font-light px-4 py-3 rounded-lg"
                     }
                   >
-                    <MdPayment />
+                    <MdShoppingCart />
                     My Appoinments
                   </NavLink>
                 </li>
